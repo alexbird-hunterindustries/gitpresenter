@@ -1,0 +1,24 @@
+{
+  "name": "gitpresenter",
+  "version": "0.0.1",
+  "description": "A command line tool for stepping through git commits like one steps through slides in a PowerPoint -- for git-powered \"live\" code demos.",
+  "main": "dist/index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/alexbird-hunterindustries/gitpresenter.git"
+  },
+  "keywords": [
+    "CLI",
+    "git",
+    "presentation"
+  ],
+  "author": "Alex Bird <alex.bird@hunter.global>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/alexbird-hunterindustries/gitpresenter/issues"
+  },
+  "homepage": "https://github.com/alexbird-hunterindustries/gitpresenter#readme"
+}
