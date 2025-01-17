@@ -3,7 +3,7 @@ import {Text, useInput} from 'ink';
 import { listCommits } from './git/listCommits';
 
 export const GitBrowser = () => {
-  const [log, setLog] = useState([]);
+  const [commits, setCommits] = useState([]);
   useInput((input, key) => {
     if (key.upArrow) {
       console.log('up');
@@ -16,8 +16,8 @@ export const GitBrowser = () => {
 
   useEffect(() => {
     listCommits()
-      .then(commits => setLog(commits));
+      .then(commits => setCommits(commits));
   }, []);
 
-  return <Text color="green">{log.join('\n')}</Text>;
+  return <Text color="green">{commits.map(JSON.stringify).join('\n')}</Text>;
 };
