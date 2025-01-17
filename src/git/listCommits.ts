@@ -13,10 +13,12 @@ export async function listCommits() {
 function parseDecorations(decorations) {
   const items = decorations
     .replace('HEAD -> ', '')
-    .split(', ');
+    .split(', ')
+    .map(x => x.trim())
+    .filter(x => !!x);
 
   const tagPrefix = 'tag: ';
-  const tags = items.filter(x => x.startsWith(tagPrefix)).map(x => x.replace(tagPrefix, ''));
+  const tags = items.filter(x => x.startsWith(tagPrefix)).map(x => x.replace(tagPrefix, ''))
   const branches = items.filter(x => !x.startsWith(tagPrefix));
   return { tags, branches };
 }
