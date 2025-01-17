@@ -4,7 +4,7 @@ Date: 2025-01-17
 
 ## Status
 
-Accepted
+Superceded by [6. Only build the code dynamically in dev mode](0006-only-build-the-code-dynamically-in-dev-mode.md)
 
 ## Context
 

@@ -4,6 +4,9 @@
   "description": "A command line tool for stepping through git commits like one steps through slides in a PowerPoint -- for git-powered \"live\" code demos.",
   "main": "index.mjs",
   "type": "module",
+  "bin": {
+    "gitpresenter": "./index.mjs"
+  },
   "scripts": {
     "build": "rolldown -c rolldown.config.js",
     "test": "echo \"Error: no test specified\" && exit 1"

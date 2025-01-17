@@ -2,8 +2,8 @@ import { useEffect, useState } from "react";
 import { Text, render } from "ink";
 import { jsx, jsxs } from "react/jsx-runtime";
 
-//#region src/main.tsx
-const Counter = () => {
+//#region src/GitBrowser.tsx
+const GitBrowser = () => {
 	const [counter, setCounter] = useState(0);
 	useEffect(() => {
 		const timer = setInterval(() => {
@@ -15,11 +15,14 @@ const Counter = () => {
 	}, []);
 	return jsxs(Text, {
 		color: "green",
-		children: [counter, " tests passed"]
+		children: [counter, " quibbles scribbled"]
 	});
 };
+
+//#endregion
+//#region src/main.tsx
 function main() {
-	render(jsx(Counter, {}));
+	render(jsx(GitBrowser, {}));
 }
 
 //#endregion
