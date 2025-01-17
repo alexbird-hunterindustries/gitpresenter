@@ -2,8 +2,10 @@
   "name": "gitpresenter",
   "version": "0.0.1",
   "description": "A command line tool for stepping through git commits like one steps through slides in a PowerPoint -- for git-powered \"live\" code demos.",
-  "main": "dist/index.js",
+  "main": "index.mjs",
+  "type": "module",
   "scripts": {
+    "build": "rolldown -c rolldown.config.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -20,5 +22,13 @@
   "bugs": {
     "url": "https://github.com/alexbird-hunterindustries/gitpresenter/issues"
   },
-  "homepage": "https://github.com/alexbird-hunterindustries/gitpresenter#readme"
+  "homepage": "https://github.com/alexbird-hunterindustries/gitpresenter#readme",
+  "dependencies": {
+    "ink": "^5.1.0",
+    "react": "^18.3.1"
+  },
+  "devDependencies": {
+    "@rollup/plugin-node-resolve": "^16.0.0",
+    "rolldown": "^1.0.0-beta.1"
+  }
 }
