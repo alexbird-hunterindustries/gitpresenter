@@ -22,16 +22,20 @@ export const GitBrowser = () => {
 
   return (
     <Box flexDirection="column">
-      { commits.map(({ hash, summary, tags, branches }, i) => (
-        <Box key={hash} flexDirection="row" justifyContent="flex-start">
-          <>
-            <Text color="blue">{i === cursor ? ' >> ' : '    '} </Text>
-            <Text color="green">{hash} </Text>
-            <Text color="cyan">{[...tags, ...branches].map(x => x + ' ').join('')}</Text>
-            <Text color="blue">{summary}</Text>
-          </>
-        </Box>
-      )) }
+      { commits.map(({ hash, summary, tags, branches }, i) => {
+        const active = cursor === i;
+        return (
+          <Box key={hash} flexDirection="row" justifyContent="flex-start">
+            <>
+              <Text color="blue">{active ? ' >> ' : '    '} </Text>
+              <Text color={active ? "green" : undefined }>{hash} </Text>
+              <Text color="blue">{tags.map(x => x + ' ').join('')}</Text>
+              <Text color="gray">{branches.map(x => x + ' ').join('')}</Text>
+              <Text color={active ? "cyan" : undefined }>{summary}</Text>
+            </>
+          </Box>
+        )
+      }) }
     </Box>
   )
 };
