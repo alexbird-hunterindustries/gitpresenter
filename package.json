@@ -28,6 +28,7 @@
   "homepage": "https://github.com/alexbird-hunterindustries/gitpresenter#readme",
   "dependencies": {
     "ink": "^5.1.0",
+    "ink-big-text": "^2.0.0",
     "react": "^18.3.1"
   },
   "devDependencies": {
