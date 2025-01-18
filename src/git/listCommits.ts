@@ -4,7 +4,7 @@ import { exec as execWithCallback } from 'node:child_process';
 const exec = promisify(execWithCallback);
 
 export async function listCommits() {
-  const { stdout } = await exec('git log -n 20 --pretty="format:%h||||%s||||%D"');
+  const { stdout } = await exec('git log -n 500 --pretty="format:%h||||%s||||%D"');
   return stdout.split('\n')
     .map(line => line.split('||||'))
     .map(([hash, summary, decorations]) => ({ hash, summary, ...parseDecorations(decorations) }));
