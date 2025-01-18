@@ -2,7 +2,14 @@ import React, {useState, useEffect, Fragment} from 'react';
 import { Box, Text, useInput } from 'ink';
 import { listCommits } from './git/listCommits';
 
-export const GitBrowser = ({ width, height }: { width: number, height: number }) => {
+export interface GitBrowserProps {
+  width: number;
+  height: number;
+  selected: string;
+  setSelected: (hash: string) => void;
+}
+
+export const GitBrowser = ({ width, height, selected, setSelected }: GitBrowserProps) => {
   const [commits, setCommits] = useState([]);
   const [cursor, setCursor] = useState(0);
   const minCursor = 0;
@@ -13,7 +20,7 @@ export const GitBrowser = ({ width, height }: { width: number, height: number })
     } else if (key.downArrow) {
       setCursor(x => Math.min(maxCursor, x + 1));
     } else if (key['return']) {
-      console.log(`submit commit ${commits[cursor].summary}`);
+      setSelected(commits[cursor].hash);
     }
   });
 
@@ -33,15 +40,20 @@ export const GitBrowser = ({ width, height }: { width: number, height: number })
     <Box width={width} flexDirection="column" borderStyle="round" padding={1}>
       { Array.from({ length: startBlankLines }).map((_, i) => <Text key={`starting-blank-${i}`}> </Text>) }
       { visibleCommits.map(({ hash, summary, tags, index }) => {
+        const isSelected = hash === selected;
         const active = cursor === index;
         const summaryWidth = width - 20 - (tags.join(' ').length)
+        const icon = isSelected
+          ? active ? '>>⭐️' : '  ⭐️'
+          : active ? '>>  ' : '    '
+        const emphasize = active || isSelected;
         return (
           <Box key={hash} flexDirection="row" justifyContent="flex-start">
             <>
-              <Text color="blue">{active ? ' >> ' : '    '} </Text>
-              <Text color={active ? "green" : undefined }>{hash} </Text>
-              <Text color="blue">{tags.map(x => x + ' ').join('')}</Text>
-              <Text color={active ? "cyan" : undefined }>{summary.slice(0, summaryWidth)}</Text>
+              <Text color="blue">{icon} </Text>
+              <Text color={emphasize ? "green" : undefined }>{hash} </Text>
+              <Text color="gray">{tags.map(x => x + ' ').join('')}</Text>
+              <Text color={emphasize ? "cyan" : undefined }>{summary.slice(0, summaryWidth)}</Text>
             </>
           </Box>
         )
