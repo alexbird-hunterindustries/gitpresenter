@@ -8,7 +8,7 @@ export default defineConfig({
     dir: 'dist',
   },
   external: [
-    /node_modules/
+    /node_modules/,
   ],
   plugins: [nodeResolve()]
 })
