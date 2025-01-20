@@ -7,9 +7,11 @@ export interface GitBrowserProps {
   height: number;
   selected?: string;
   setSelected: (hash: string) => Promise<void>;
+  setNextCommit: (hash: string) => Promise<void>;
 }
 
-export const GitBrowser = ({ width, height, selected, setSelected }: GitBrowserProps) => {
+export const GitBrowser = (props: GitBrowserProps) => {
+  const { width, height, selected, setSelected } = props;
   const [commits, setCommits] = useState<CommitSummary[]>([]);
   const [maybeCursor, setCursor] = useState<number | undefined>();
   const cursor = maybeCursor || 0;
@@ -24,6 +26,12 @@ export const GitBrowser = ({ width, height, selected, setSelected }: GitBrowserP
       onSelect(commits[cursor].hash);
     }
   });
+
+  useEffect(() => {
+    const nextCommit = cursor && commits[cursor]?.hash
+    props.setNextCommit(nextCommit || undefined);
+
+  }, [cursor])
 
   useEffect(() => {
     listCommits()

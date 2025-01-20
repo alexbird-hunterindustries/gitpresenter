@@ -6,9 +6,11 @@ import { GitBrowser } from './GitBrowser';
 import { CurrentCommit } from './CurrentCommit';
 import { useStdoutDimensions } from './hooks/useStdoutDimensions';
 import { checkoutCommit } from './git/checkoutCommit';
+import { CommitDetails } from "./CommitDetails";
 
 export const App = () => {
   const [selected, setSelected] = useState<string | undefined>();
+  const [nextCommit, setNextCommit] = useState<string | undefined>();
   const [columns, rows] = useStdoutDimensions();
 
   const twoColumnWidth = (columns / 2) - 4;
@@ -25,11 +27,12 @@ export const App = () => {
       <UserHints width={columns}/>
       <Box width={columns} flexDirection="row">
 
-        <GitBrowser selected={selected} setSelected={onSelect} width={twoColumnWidth} height={contentHeight}/>
+        <GitBrowser selected={selected} setNextCommit={setNextCommit} setSelected={onSelect} width={twoColumnWidth}
+                    height={contentHeight}/>
 
         <Box width={4}></Box>
 
-        <CurrentCommit selected={selected} width={twoColumnWidth} height={contentHeight}/>
+        <CommitDetails currentCommit={selected} nextCommit={nextCommit} width={twoColumnWidth} height={contentHeight}/>
 
       </Box>
     </Box>
