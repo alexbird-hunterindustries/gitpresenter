@@ -1,4 +1,7 @@
 import { execSync } from "node:child_process";
+import chalk from "chalk";
+import { render } from "ink";
+import { AppHeader } from "../AppHeader";
 
 const defaultBookmarkBranchName = "gitpresenter-restore";
 
