@@ -13,10 +13,22 @@ export const CommitDetails = (props: CommitDetailsProps) => {
   const itemHeight = (props.height - 2) / 2;
   return (
     <Box flexDirection={"column"}>
-      <CurrentCommit width={props.width} height={itemHeight} selected={props.nextCommit}></CurrentCommit>
+      <CurrentCommit
+        width={props.width}
+        height={itemHeight}
+        selected={props.nextCommit}
+        headerPrefix={<Text><Text color={'blue'}>{'>>'}</Text> Next:</Text>}
+      ></CurrentCommit>
+
       <Spacer></Spacer>
       <Spacer></Spacer>
-      <CurrentCommit width={props.width} height={itemHeight} selected={props.currentCommit}></CurrentCommit>
+
+      <CurrentCommit
+        width={props.width}
+        height={itemHeight}
+        selected={props.currentCommit}
+        headerPrefix={<Text>{'⭐️'} Current:</Text>}
+      ></CurrentCommit>
     </Box>
   )
 }

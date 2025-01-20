@@ -7,7 +7,7 @@ export interface GitBrowserProps {
   height: number;
   selected?: string;
   setSelected: (hash: string) => Promise<void>;
-  setNextCommit: (hash: string) => Promise<void>;
+  setNextCommit: (hash: string | undefined) => Promise<void>;
 }
 
 export const GitBrowser = (props: GitBrowserProps) => {
