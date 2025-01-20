@@ -20,9 +20,16 @@ export function markOurPlaceSoWeCanComeBackToItLater() {
 export function goBackToTheStartingPlace({ bookmarkBranchName }: { bookmarkBranchName: string }) {
   execSync(`git reset --hard`);
   execSync(`git checkout ${bookmarkBranchName}`);
+  let restoredTo = `the ${bookmarkBranchName} branch`;
   if (bookmarkBranchName === defaultBookmarkBranchName) {
     const currentCommit = execSync("git log -n 1 --pretty=\"format:%h\"").toString().trim();
+    restoredTo = `detached head at commit ${currentCommit}`;
     execSync(`git checkout ${currentCommit}`);
     execSync(`git branch -D ${defaultBookmarkBranchName}`);
   }
+  console.log("");
+  console.log("----------------------------------------------------------------------------------");
+  console.log("");
+  console.log(`✌️  gitpresenter has restored git to the state it was in before we began (${restoredTo})`);
+  console.log("");
 }
