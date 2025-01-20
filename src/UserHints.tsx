@@ -6,7 +6,8 @@ const hintDisplayTime = 15 * 1000;
 export const UserHints = ({ width }: { width: number }) => {
   const [visible, setVisible] = useState(true)
   useEffect(() => {
-    setTimeout(() => setVisible(false), hintDisplayTime)
+    const timeout = setTimeout(() => setVisible(false), hintDisplayTime)
+    return () => clearTimeout(timeout);
   }, []);
   return (
     <Box flexDirection="column" alignItems="center" width={width} paddingBottom={1}>
