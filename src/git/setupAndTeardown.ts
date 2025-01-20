@@ -1,12 +1,9 @@
 import { execSync } from "node:child_process";
-import chalk from "chalk";
-import { render } from "ink";
-import { AppHeader } from "../AppHeader";
 
 const defaultBookmarkBranchName = `gitpresenter-restore-${randomAlphanumeric()}`;
 
 function randomAlphanumeric() {
-  return  Math.random().toString(16).toUpperCase().slice(3, 13);
+  return Math.random().toString(16).toUpperCase().slice(3, 13);
 }
 
 export function markOurPlaceSoWeCanComeBackToItLater() {

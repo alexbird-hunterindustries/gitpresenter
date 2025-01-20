@@ -15,5 +15,6 @@ export function main() {
 }
 
 process.on("exit", () => {
+  console.info("Restoring your pre-presentation git state, please wait. (Ctrl+C again to leave git in a messy state.)")
   goBackToTheStartingPlace(startingPlace);
 });
