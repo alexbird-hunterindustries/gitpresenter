@@ -5,7 +5,7 @@ import { describeCommit } from './git/describeCommit';
 export interface CurrentCommitProps {
   width: number;
   height: number;
-  selected: string;
+  selected?: string;
 }
 
 export const CurrentCommit = ({ width, height, selected }: CurrentCommitProps) => {

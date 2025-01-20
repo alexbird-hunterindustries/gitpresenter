@@ -1,16 +1,16 @@
 import React, {useState, useEffect, Fragment} from 'react';
 import { Box, Text, useInput } from 'ink';
-import { listCommits } from './git/listCommits';
+import { CommitSummary, listCommits } from './git/listCommits';
 
 export interface GitBrowserProps {
   width: number;
   height: number;
-  selected: string;
+  selected?: string;
   setSelected: (hash: string) => void;
 }
 
 export const GitBrowser = ({ width, height, selected, setSelected }: GitBrowserProps) => {
-  const [commits, setCommits] = useState([]);
+  const [commits, setCommits] = useState<CommitSummary[]>([]);
   const [cursor, setCursor] = useState(0);
   const minCursor = 0;
   const maxCursor = commits.length - 1;
