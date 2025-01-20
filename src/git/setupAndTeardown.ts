@@ -3,7 +3,11 @@ import chalk from "chalk";
 import { render } from "ink";
 import { AppHeader } from "../AppHeader";
 
-const defaultBookmarkBranchName = "gitpresenter-restore";
+const defaultBookmarkBranchName = `gitpresenter-restore-${randomAlphanumeric()}`;
+
+function randomAlphanumeric() {
+  return  Math.random().toString(16).toUpperCase().slice(3, 13);
+}
 
 export function markOurPlaceSoWeCanComeBackToItLater() {
   const currentBranch = execSync("git rev-parse --abbrev-ref HEAD").toString().trim();
