@@ -9,7 +9,7 @@ export interface CurrentCommitProps {
   headerPrefix: ReactNode;
 }
 
-export const CurrentCommit = ({ headerPrefix, width, height, selected }: CurrentCommitProps) => {
+export const CommitSummary = ({ headerPrefix, width, height, selected }: CurrentCommitProps) => {
   const [details, setDetails] = useState<CommitDescription>({} as any);
   useEffect(() => {
     if (!selected) {

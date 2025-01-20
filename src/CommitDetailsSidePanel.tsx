@@ -1,6 +1,6 @@
 import { Box, Spacer, Text } from "ink";
 import React from "react";
-import { CurrentCommit } from "./CurrentCommit";
+import { CommitSummary } from "./CommitSummary";
 
 export interface CommitDetailsProps {
   currentCommit?: string;
@@ -9,26 +9,26 @@ export interface CommitDetailsProps {
   height: number;
 }
 
-export const CommitDetails = (props: CommitDetailsProps) => {
+export const CommitDetailsSidePanel = (props: CommitDetailsProps) => {
   const itemHeight = (props.height - 2) / 2;
   return (
     <Box flexDirection={"column"}>
-      <CurrentCommit
+      <CommitSummary
         width={props.width}
         height={itemHeight}
         selected={props.nextCommit}
         headerPrefix={<Text><Text color={'blue'}>{'>>'}</Text> Next:</Text>}
-      ></CurrentCommit>
+      ></CommitSummary>
 
       <Spacer></Spacer>
       <Spacer></Spacer>
 
-      <CurrentCommit
+      <CommitSummary
         width={props.width}
         height={itemHeight}
         selected={props.currentCommit}
         headerPrefix={<Text>{'⭐️'} Current:</Text>}
-      ></CurrentCommit>
+      ></CommitSummary>
     </Box>
   )
 }

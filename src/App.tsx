@@ -3,10 +3,10 @@ import { Box } from 'ink';
 import { AppHeader } from './AppHeader';
 import { UserHints } from './UserHints';
 import { GitBrowser } from './GitBrowser';
-import { CurrentCommit } from './CurrentCommit';
+import { CommitSummary } from './CommitSummary';
 import { useStdoutDimensions } from './hooks/useStdoutDimensions';
 import { checkoutCommit } from './git/checkoutCommit';
-import { CommitDetails } from "./CommitDetails";
+import { CommitDetailsSidePanel } from "./CommitDetailsSidePanel";
 
 export const App = () => {
   const [selected, setSelected] = useState<string | undefined>();
@@ -32,7 +32,8 @@ export const App = () => {
 
         <Box width={4}></Box>
 
-        <CommitDetails currentCommit={selected} nextCommit={nextCommit} width={twoColumnWidth} height={contentHeight}/>
+        <CommitDetailsSidePanel currentCommit={selected} nextCommit={nextCommit} width={twoColumnWidth}
+                                height={contentHeight}/>
 
       </Box>
     </Box>
