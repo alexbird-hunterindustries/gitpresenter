@@ -1,6 +1,6 @@
 {
   "compilerOptions": {
-    "moduleResolution": "node",
+    "moduleResolution": "bundler",
     "removeComments": false,
     "sourceMap": true,
     "target": "es2023",
@@ -12,7 +12,8 @@
       "es2023"
     ],
     "noEmitOnError": true,
-    "esModuleInterop": false
+    "esModuleInterop": true,
+    "jsx": "react"
   },
   "include": ["src"]
 }

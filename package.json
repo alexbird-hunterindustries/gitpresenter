@@ -33,6 +33,7 @@
   },
   "devDependencies": {
     "@rollup/plugin-node-resolve": "^16.0.0",
+    "@types/react": "^19.0.7",
     "rolldown": "^1.0.0-beta.1"
   }
 }
