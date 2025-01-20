@@ -1,7 +1,7 @@
 import React, { Fragment, useEffect, useState } from 'react';
 import { Box, Text } from 'ink';
 
-const hintDisplayTime = 5 * 1000;
+const hintDisplayTime = 15 * 1000;
 
 export const UserHints = ({ width }: { width: number }) => {
   const [visible, setVisible] = useState(true)
