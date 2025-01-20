@@ -6,7 +6,7 @@ export interface GitBrowserProps {
   width: number;
   height: number;
   selected?: string;
-  setSelected: (hash: string) => void;
+  setSelected: (hash: string) => Promise<void>;
 }
 
 export const GitBrowser = ({ width, height, selected, setSelected }: GitBrowserProps) => {
@@ -21,7 +21,7 @@ export const GitBrowser = ({ width, height, selected, setSelected }: GitBrowserP
     } else if (key.downArrow) {
       setCursor(x => Math.min(maxCursor, x + 1));
     } else if (key['return']) {
-      setSelected(commits[cursor].hash);
+      onSelect(commits[cursor].hash);
     }
   });
 
@@ -33,6 +33,12 @@ export const GitBrowser = ({ width, height, selected, setSelected }: GitBrowserP
         setCursor(initialCursor);
       });
   }, []);
+
+  function onSelect(hash: string) {
+    setSelected(hash).then(() => {
+      setCursor(current => !current ? current : Math.max(0, current - 1));
+    })
+  }
 
   const bufferSize = (height - 5) / 2;
   const visibleStart = Math.max(minCursor, cursor - bufferSize);
