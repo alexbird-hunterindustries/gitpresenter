@@ -22,6 +22,7 @@ async function getChanges(hash: string) {
     return changes
       .split('\n')
       .map(x => x.replace(/\s/g, ' '))
+      .filter(x => !!x.trim())
       .join('\n');
   } catch (ignored) {
     return '(could not retrieve changes)';

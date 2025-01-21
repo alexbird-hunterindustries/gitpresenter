@@ -10,7 +10,8 @@ export interface CommitDetailsProps {
 }
 
 export const CommitDetailsSidePanel = (props: CommitDetailsProps) => {
-  const itemHeight = (props.height) / 2;
+  const itemHeight = Math.floor((props.height) / 2);
+  const gap = props.height - (2 * itemHeight);
   return (
     <Box flexDirection={"column"}>
       <CommitSummary
@@ -19,6 +20,10 @@ export const CommitDetailsSidePanel = (props: CommitDetailsProps) => {
         selected={props.nextCommit}
         headerPrefix={<Text><Text color={'blue'}>{'>>'}</Text> Next:</Text>}
       ></CommitSummary>
+
+      {
+        Array.from({ length: gap }).map(() => <Spacer></Spacer>)
+      }
 
       <CommitSummary
         width={props.width}

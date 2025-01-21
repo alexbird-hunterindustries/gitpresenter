@@ -30,7 +30,7 @@ export const CommitSummary = ({ headerPrefix, width, height, selected }: Current
       paddingLeft={1}
       paddingRight={1}
       flexDirection={"column"}
-      justifyContent={'flex-start'}
+      justifyContent={'space-between'}
       overflowY={'hidden'}
     >
       {!selected ? <Text>Press Enter to check out a commit</Text> : (
