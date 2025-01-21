@@ -18,6 +18,10 @@ export const CommitSummary = ({ headerPrefix, width, height, selected }: Current
     describeCommit(selected).then(setDetails);
   }, [selected]);
 
+  const detailsHeight = height - 4;
+  const bodyLines = (details.body || '').split('\n').slice(0, detailsHeight);
+  const changes = (details.changes || '').split('\n').slice(0, detailsHeight - bodyLines.length).join('\n')
+  const body = bodyLines.join('\n').trim()
   return (
     <Box
       width={width}
@@ -26,15 +30,25 @@ export const CommitSummary = ({ headerPrefix, width, height, selected }: Current
       paddingLeft={1}
       paddingRight={1}
       flexDirection={"column"}
+      justifyContent={'flex-start'}
+      overflowY={'hidden'}
     >
       {!selected ? <Text>Press Enter to check out a commit</Text> : (
         <>
-          <Text bold>
-            <Text color={"cyan"}>{headerPrefix}</Text>
-            {' '}
-            {details.summary}</Text>
-          <Text>{details.body}</Text>
-          <Text dimColor>{details.changes}</Text>
+          <Box>
+            <Text bold>
+              <Text color={"cyan"}>{headerPrefix}</Text>
+              {' '}
+              {details.summary}</Text>
+          </Box>
+          {!body ? null : (
+            <Box overflowY={'hidden'}>
+              <Text>{body}</Text>
+            </Box>
+          )}
+          <Box overflowY={'hidden'}>
+            <Text dimColor>{changes}</Text>
+          </Box>
         </>
       )}
     </Box>

@@ -13,7 +13,7 @@ export async function describeCommit(hash: string): Promise<CommitDescription> {
   const { stdout: summary } = await exec(`git rev-list -n 1 ${hash} --format="format:%s" --no-commit-header`);
   const { stdout: body } = await exec(`git rev-list -n 1 ${hash} --format="format:%b" --no-commit-header`);
   const changes = await getChanges(hash);
-  return { summary, body, changes };
+  return { summary: summary.trim(), body: body.trim(), changes };
 }
 
 async function getChanges(hash: string) {
