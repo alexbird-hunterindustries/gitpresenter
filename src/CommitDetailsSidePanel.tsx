@@ -10,7 +10,7 @@ export interface CommitDetailsProps {
 }
 
 export const CommitDetailsSidePanel = (props: CommitDetailsProps) => {
-  const itemHeight = (props.height - 2) / 2;
+  const itemHeight = (props.height) / 2;
   return (
     <Box flexDirection={"column"}>
       <CommitSummary
@@ -19,9 +19,6 @@ export const CommitDetailsSidePanel = (props: CommitDetailsProps) => {
         selected={props.nextCommit}
         headerPrefix={<Text><Text color={'blue'}>{'>>'}</Text> Next:</Text>}
       ></CommitSummary>
-
-      <Spacer></Spacer>
-      <Spacer></Spacer>
 
       <CommitSummary
         width={props.width}

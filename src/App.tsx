@@ -13,7 +13,7 @@ export const App = () => {
   const [nextCommit, setNextCommit] = useState<string | undefined>();
   const [columns, rows] = useStdoutDimensions();
 
-  const twoColumnWidth = (columns / 2) - 4;
+  const twoColumnWidth = (columns - 3) / 2;
   const contentHeight = rows - 9;
 
   async function onSelect(hash: string) {
@@ -22,7 +22,7 @@ export const App = () => {
   }
 
   return (
-    <Box width={columns} height={rows} flexDirection="column" alignItems="flex-start">
+    <Box width={columns} height={rows} flexDirection="column" alignItems="flex-start" paddingLeft={1}>
       <AppHeader width={columns}/>
       <UserHints width={columns}/>
       <Box width={columns} flexDirection="row">
@@ -30,7 +30,7 @@ export const App = () => {
         <GitBrowser selected={selected} setNextCommit={setNextCommit} setSelected={onSelect} width={twoColumnWidth}
                     height={contentHeight}/>
 
-        <Box width={4}></Box>
+        <Box width={1}></Box>
 
         <CommitDetailsSidePanel currentCommit={selected} nextCommit={nextCommit} width={twoColumnWidth}
                                 height={contentHeight}/>
