@@ -7,7 +7,7 @@ export interface GitBrowserProps {
   height: number;
   selected?: string;
   setSelected: (hash: string) => Promise<void>;
-  setNextCommit: (hash: string | undefined) => Promise<void>;
+  setNextCommit: (hash: string | undefined) => void;
 }
 
 export const GitBrowser = (props: GitBrowserProps) => {
@@ -19,9 +19,9 @@ export const GitBrowser = (props: GitBrowserProps) => {
   const maxCursor = commits.length - 1;
   useInput((input, key) => {
     if (key.upArrow) {
-      setCursor(x => Math.max(minCursor, x - 1));
+      setCursor(x => typeof x === 'undefined' ? x : Math.max(minCursor, x - 1));
     } else if (key.downArrow) {
-      setCursor(x => Math.min(maxCursor, x + 1));
+      setCursor(x => typeof x === 'undefined' ? x : Math.min(maxCursor, x + 1));
     } else if (key['return']) {
       onSelect(commits[cursor].hash);
     }

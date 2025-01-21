@@ -3,17 +3,26 @@ import { Box, Text } from 'ink';
 
 const hintDisplayTime = 15 * 1000;
 
-export const UserHints = ({ width }: { width: number }) => {
+interface UserHintsProps {
+  width: number;
+  onHintsHidden: () => void;
+}
+
+export const UserHints = ({ width, onHintsHidden }: UserHintsProps) => {
   const [visible, setVisible] = useState(true)
   useEffect(() => {
-    const timeout = setTimeout(() => setVisible(false), hintDisplayTime)
+    const timeout = setTimeout(() => {
+      setVisible(false);
+      onHintsHidden();
+    }, hintDisplayTime)
     return () => clearTimeout(timeout);
   }, []);
+  if (!visible) {
+    return null;
+  }
   return (
     <Box flexDirection="column" alignItems="center" width={width} paddingBottom={1}>
-      {!visible ? <Text> </Text> : (
-        <Text color="gray">Hint: {randomHint}</Text>
-      )}
+      <Text color="gray">Hint: {randomHint}</Text>
     </Box>
   )
 };
