@@ -27,10 +27,13 @@ export const GitBrowser = (props: GitBrowserProps) => {
     }
   });
 
-  useEffect(() => {
-    const nextCommit = cursor && commits[cursor]?.hash
+  function updateNextCommit(commits: CommitSummary[], cursor: number) {
+    const nextCommit = typeof cursor !== undefined && commits[cursor]?.hash
     props.setNextCommit(nextCommit || undefined);
+  }
 
+  useEffect(() => {
+    updateNextCommit(commits, cursor);
   }, [cursor])
 
   useEffect(() => {
@@ -39,6 +42,7 @@ export const GitBrowser = (props: GitBrowserProps) => {
         setCommits(commits);
         const initialCursor = Math.max(commits.findIndex(x => x.tags.includes('gitpresenter-start')), 0);
         setCursor(initialCursor);
+        updateNextCommit(commits, initialCursor);
       });
   }, []);
 
